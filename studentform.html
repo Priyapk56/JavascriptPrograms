@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Form</title>
+    <style>
+   
+        #studentForm input[type="button"] {
+            width: 97%;
+            margin:3px;
+            background-color: lightgreen;
+            font-size: 13px;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+        .delete-button{
+            background-color: red;
+        }
+        
+    </style>
+</head>
+
+
+<body>
+    <center>
+        <h1>Student Form</h1>
+        <form id="studentForm">
+            <table id="studentTable" border="1">
+                <tr>
+                    <td>Name</td><td><input type="text" id="name"></td>
+                </tr>
+                <tr>
+                    <td>Age</td><td><input type="number" id="age"></td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td>
+                        <input type="radio" name="gender" value="Male">Male
+                        <input type="radio" name="gender" value="Female">Female
+                    </td>
+                </tr>
+                <tr>
+                    <td>Course</td>
+                    <td>
+                        <select id="course">
+                            <option>JavaScript</option>
+                            <option>Java</option>
+                            <option>Python</option>
+                            <option>SQL</option>
+                            <option>C#</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>E-mail</td><td><input type="email" id="email"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="button" value="Save" onclick="additem()"></td>
+                </tr>
+            </table>
+        </form>
+
+        <h1>Student Data</h1>
+        <div id="result">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Course</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </center>
+
+    <script>
+        function additem() {
+
+            var name = document.getElementById("name").value;
+            var age = document.getElementById('age').value;
+            var gender = document.querySelector('input[name="gender"]:checked') ? 
+                document.querySelector('input[name="gender"]:checked').value : '';
+            var course = document.getElementById('course').value;
+            var email = document.getElementById('email').value;
+
+            var newRowHTML = 
+                '<tr>' +
+                    '<td>' + name + '</td>' +
+                    '<td>' + age + '</td>' +
+                    '<td>' + gender + '</td>' +
+                    '<td>' + course + '</td>' +
+                    '<td>' + email + '</td>' +
+                    '<td><button class="delete-button" onclick="deleteItem(event)">Delete</button></td>' +
+                '</tr>';
+
+            // Append the new row to the existing table body
+            document.querySelector('#result tbody').innerHTML += newRowHTML;
+
+            
+        }
+
+        function deleteItem(event) {
+            event.target.parentElement.parentElement.remove(); 
+        }
+    </script>
+</body>
+</html>

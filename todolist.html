@@ -1,0 +1,21 @@
+<h1>To-Do List</h1>
+<input id="text">
+<button id="add" onclick="additem()">Add</button>
+<ul id="list">
+    <li>Hello <button id="del" onclick="deleteitem(event)">Delete</button></li>
+</ul>
+
+<Script>
+    var list=document.getElementById("list")
+    var text=document.getElementById("text")
+    function additem(){
+        var listitem=document.createElement("li")
+        listitem.innerHTML=text.value+"<button onclick='deleteitem(event)'>Delete</button>"
+        list.append(listitem)
+
+    }
+    function deleteitem(event){
+        event.target.parentElement.remove()
+
+    }
+</Script>
